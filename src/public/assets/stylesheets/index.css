@@ -1,0 +1,260 @@
+/* -------------------  MOBILE  --------------------- */
+
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: Arial;
+  min-height: 100vh;
+}
+
+nav {
+  /* header styles */
+    background-color: #333;
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    color: #fff;
+    min-width: 250px;
+  }
+  
+  .navbar-logo-toggle {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 24px;
+    flex: 3;
+  }
+
+  .logo{
+    padding: 10px 20px;
+  } 
+  .logo:hover{
+    cursor: pointer;
+    background-color: #555;
+  }
+  
+  .toggle{
+    padding: 10px 20px;
+    cursor: pointer;
+    display: none;
+  }
+  .toggle:hover{
+    cursor: pointer;
+    background-color: #555;
+  }
+
+
+  nav li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 10px;
+    color: #fff;
+    width: 100%;
+  }
+  nav li:hover{
+    cursor: pointer;
+    background-color: #555;
+  }
+  
+  .navbar-items {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex: 2;
+  }
+
+  .navbar-items li {
+    width: 33%;
+  }
+
+  .navbar-hide {
+    display: none;
+  }
+
+
+  .selected {
+    background-color: #555;
+  }
+
+
+body{
+  margin: 0;
+}
+
+/*https://www.w3schools.com/howto/howto_css_loader.asp */
+.load-container{
+  width: 100%;
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.load-text{
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+}
+
+
+/* Loader */
+.load {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+
+
+/* Card */
+  
+.card {
+  max-width: 1080px;
+  min-width: 250px;
+  display: flex;
+  flex-direction: row;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: auto; /* to center item */
+  padding: 10px;
+}
+
+.card img {
+  /* https://blogs.igalia.com/svillar/2021/01/20/flexbox-cats-a-k-a-fixing-images-in-flexbox/ */
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  width: 100%;
+}
+
+.card-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 20px;
+}
+
+.card-content h2 {
+  margin-top: 0;
+  font-size: 24px;
+}
+
+.card-content ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card-content li {
+  margin-bottom: 10px;
+}
+
+.card-content li strong {
+  display: inline-block;
+  width: 120px;
+}
+
+.divider {
+  min-width: 250px;
+  margin: 20px 0;
+  padding: 10px 0;
+  text-align: center;
+  background-color: gray;
+  color: #fff;
+}
+
+.slideshow {
+  min-width: 250px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.slideshow img {
+  min-width: 0;
+  min-height: 0;
+  width: 100%;
+}
+
+.slide {
+  width: 32%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  margin:  10px 0;
+}
+
+/* -------------------  TABLET  --------------------- */
+  /* Collapse the menu items into a vertical list on small screens */
+  @media (max-width: 768px) {
+    nav{
+        flex-direction: column;
+    }
+    .navbar-items {
+      flex-direction: column;
+      align-items: flex-start;
+      background-color: #444;
+    }
+    .navbar-items li {
+        width: 100%;
+        padding: 10px;
+        text-align: center;
+    }
+    .toggle{
+        display: block;
+    }
+
+
+
+    .card,
+    .slideshow {
+      flex-direction: column;
+    }
+
+    .slide {
+      width:  100%;
+    }
+  }
+
+/* -------------------  DESKTOP  -------------------- */
+
+@media (min-width: 1224px) {
+  /* use mobile */
+}
+
+/* -------------------  LARGE SCREENS  -------------- */
+
+@media (min-width: 1824px) {
+  /* use mobile */
+}
+
+main {
+
+}
+
+footer {
+  /* footer styles */
+}
