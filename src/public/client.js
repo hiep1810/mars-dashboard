@@ -19,7 +19,7 @@ const render = async (root, state) => {
   root.innerHTML = App(state);
 };
 
-// create content
+// HOF 1:
 const AppGenerator = (Component) => {
   return function (state) {
     return state.loading === true ? Loading() : Component(state);
@@ -57,7 +57,7 @@ const Rover = (state) => {
         `;
 };
 
-//Lastest Images:
+// HOF 2:
 const LastestImageGenerator = (lastest_images) => {
   const data = lastest_images.map((data) => {
     return LastestImage(data);
