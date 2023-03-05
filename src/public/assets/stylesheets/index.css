@@ -239,6 +239,40 @@ body{
     }
   }
 
+  /* Wallpapper */
+  .wallpaper {
+    display: flex;
+    justify-content: center;
+    background-image: url('/assets/images/mars.jpg');
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+  }
+
+  .centered-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 20px;
+  }
+
+  .wallpaper h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+  }
+
+  .wallpaper p {
+    font-size: 1.5rem;
+    line-height: 1.6;
+  }
+
+
+
+
+
+
 /* -------------------  DESKTOP  -------------------- */
 
 @media (min-width: 1224px) {
@@ -252,9 +286,17 @@ body{
 }
 
 main {
-
+  margin-bottom: 50px;
 }
 
 footer {
-  /* footer styles */
+  height: 50px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #f5f5f5;
+  color: #333;
+  font-size: 14px;
+  text-align: center;
 }

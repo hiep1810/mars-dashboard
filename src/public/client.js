@@ -20,22 +20,26 @@ const render = async (root, state) => {
 };
 
 // create content
-const App = (state) => {
-  const curRover = state[state.currentRover];
-  return state.loading === true
-    ? Loading()
-    : `
-        ${Rover(curRover)}
-        <div class="divider"><p><strong>Lastest Images</strong></p></div>
-        <div class="slideshow">${curRover.lastest_images
-          .map((value) => {
-            return LastestImage(value);
-          })
-          .join(' ')}</div>
-      `;
+const AppGenerator = (Component) => {
+  return function (state) {
+    return state.loading === true ? Loading() : Component(state);
+  };
 };
 
-//Components:
+const App = AppGenerator((state) => {
+  const curRover = state[state.currentRover];
+  const RandomLastestImgs = !state.loading
+    ? LastestImageGenerator(curRover.lastest_images)
+    : null;
+
+  return `
+    ${Rover(curRover)}
+    <div class="divider"><p><strong>Lastest Images</strong></p></div>
+    <div class="slideshow">${RandomLastestImgs(3)}</div>
+  `;
+});
+
+//Rover:
 const Rover = (state) => {
   let { name, launch_date, landing_date, status } = state;
   return `
@@ -53,6 +57,22 @@ const Rover = (state) => {
         `;
 };
 
+//Lastest Images:
+const LastestImageGenerator = (lastest_images) => {
+  const data = lastest_images.map((data) => {
+    return LastestImage(data);
+  });
+  return function randomImages(numberOfImages) {
+    randImgs = [];
+    const max = numberOfImages > data.length ? data.length : numberOfImages;
+
+    for (let i = 0; i < max; i += 1) {
+      randImgs.push(data[Math.floor(Math.random() * data.length)]);
+    }
+    return randImgs.join(' ');
+  };
+};
+
 const LastestImage = (state) => {
   let { img_src, earth_date, camera_full_name } = state;
   return `
@@ -68,13 +88,13 @@ const LastestImage = (state) => {
     `;
 };
 
+//Loading:
 const Loading = () => {
   return `
     <div class="load-container">
         <div class="load"></div>
     </div>
     <div class="load-text">Loading</div>
-
     `;
 };
 
@@ -99,13 +119,13 @@ async function onRoverClick(event) {
 
 function setSelectedRover(rover) {
   const items = document.getElementById('navbar-items').children;
+
   for (let i = 0; i < items.length; i += 1) {
     items[i].classList.remove('selected');
   }
   document.getElementById(`navbar-${rover}`).classList.add('selected');
 }
 
-//listener:
 document
   .getElementById('navbar-curiosity')
   .addEventListener('click', onRoverClick);
@@ -115,3 +135,16 @@ document
 document
   .getElementById('navbar-spirit')
   .addEventListener('click', onRoverClick);
+
+// add event to toggle button
+document
+  .querySelector('.toggle')
+  .addEventListener('click', function classToggle() {
+    document.getElementById('navbar-items').classList.toggle('navbar-hide');
+  });
+
+window.addEventListener('resize', function windowResize() {
+  if (this.window.innerWidth > 768) {
+    document.getElementById('navbar-items').classList.remove('navbar-hide');
+  }
+});
